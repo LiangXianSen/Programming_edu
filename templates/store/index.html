@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store</title>
+</head>
+<body>
+
+<ul>
+    {% for file in files %}
+    <li>{{ file.name }}; {{ file.date }}; <a href="/media/{{ file.path }}">{{ file.path }}</a></li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
