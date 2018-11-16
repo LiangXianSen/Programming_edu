@@ -14,11 +14,11 @@ mysql> CREATE DATABASE programming_edu;
 
 ```
 python3 -m django --version (2.1.2)
-python3 manage.py startproject web
+python3 manage.py startapp web
 python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py createsuperuser
-python3 manage.py runserver 8000
+python3 manage.py runserver 0.0.0.0:8000
 ```
 
 
