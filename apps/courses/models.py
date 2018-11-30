@@ -10,7 +10,6 @@ from django.db import models
 from teachers.models import Teacher
 # Create your models here.
 
-
 class Course(models.Model):
     name = models.CharField(max_length=50, verbose_name=u"课程名")
     desc = models.CharField(max_length=300, verbose_name=u"课程描述")
