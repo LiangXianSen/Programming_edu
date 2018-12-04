@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.views.static import serve
 import xadmin
 from users.views import IndexView, LoginView
+from programming_edu.settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -23,6 +25,10 @@ urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
     #login
     url(r'^login/$', LoginView.as_view(), name='login'),
+    # login
+    url(r'^register/$', LoginView.as_view(), name='register'),
+    #配置上传文件的访问处理函数
+    url(r'^media/(?P<path>.*)$',  serve, {"document_root":MEDIA_ROOT}),
     #富文本相关url
     url(r'^ueditor/',include(('DjangoUeditor.urls', 'ueditor'), namespace="ueditor")),
 ]

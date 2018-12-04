@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+  {% block title %} login {% endblock %}
+   {% block content %}
+	<!-- ====================================
+    ——— MAIN SECTION
+    ===================================== -->
+    <section class="mainContent full-width clearfix">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default formPanel">
+              <div class="panel-heading bg-color-1 border-color-1">
+                <h3 class="panel-title">LOGIN</h3>
+              </div>
+              <div class="panel-body">
+                <form action="/login/" method="POST" role="form">
+                  <div class="form-group formField">
+                    <input type="text" class="form-control" placeholder="User name" name="username">
+                  </div>
+                  <div class="form-group formField">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                  </div>
+                    <div  id="jsLoginTips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
+                  <div class="form-group formField">
+                    <input type="submit" class="btn btn-primary btn-block bg-color-3 border-color-3" value="Log in">
+                  </div>
+                  <div class="form-group formField">
+                    <p class="help-block"><a href="#">Forgot password?</a></p>
+                  </div>
+                    {% csrf_token %}
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    {% endblock %}

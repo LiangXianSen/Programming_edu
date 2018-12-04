@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 
 
 from .forms import LoginForm
@@ -35,7 +36,7 @@ class IndexView(View):
 
 class LoginView(View):
     def get(self, request):
-        return render(request, 'index.html', {})
+        return render(request, 'login.html', {})
 
     def post(self, request):
         login_form = LoginForm(request.POST)
@@ -46,14 +47,13 @@ class LoginView(View):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect(reversed("index"))
+                    return HttpResponseRedirect(reverse('index'))
                 else:
-                    return render(request, "index.html", {"msg": "用户未激活!"})
+                    return render(request, "login.html", {"msg": "用户未激活!"})
             else:
-                return render(request, "index.html", {"msg": "用户名或密码错误!"})
+                return render(request, "login.html", {"msg": "用户名或密码错误!"})
         else:
-            return render(request, "index.html", {"login_form": login_form})
-
+            return render(request, "login.html", {"login_form": login_form})
 
 
 class LogoutView(View):
