@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import os
-import sys
-import pymysql
+
+import os, sys, pymysql
+
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -33,10 +33,11 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# Application definition
-#AUTHENTICATION_BACKENDS = (
-#    'users.views.CustomBackend',
-#)
+#Application definition
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 

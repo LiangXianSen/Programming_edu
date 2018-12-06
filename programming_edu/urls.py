@@ -27,8 +27,12 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name='login'),
     # login
     url(r'^register/$', LoginView.as_view(), name='register'),
+
     #配置上传文件的访问处理函数
     url(r'^media/(?P<path>.*)$',  serve, {"document_root":MEDIA_ROOT}),
+
+    #课程相关URL配置
+    url(r'^course/', include(('courses.urls', 'courses'), namespace="course")),
     #富文本相关url
-    url(r'^ueditor/',include(('DjangoUeditor.urls', 'ueditor'), namespace="ueditor")),
+    url(r'^ueditor/',include('DjangoUeditor.urls')),
 ]
