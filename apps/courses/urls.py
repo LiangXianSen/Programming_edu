@@ -4,7 +4,7 @@ __date__ = '2018/12/5 12:34'
 
 from django.conf.urls import url, include
 
-from .views import CourseListView, CourseDetailView, CourseInfoView, CommentsView, AddCommentsView
+from .views import CourseListView, CourseDetailView, ChapterInfoView, CommentsView, AddCommentsView
 
 urlpatterns = [
     #课程列表页
@@ -13,7 +13,8 @@ urlpatterns = [
     # 课程详情页
     url(r'^detail/(?P<course_id>\d+)/$', CourseDetailView.as_view(), name="course_detail"),
 
-    url(r'^info/(?P<course_id>\d+)/$', CourseInfoView.as_view(), name="course_info"),
+    # 章节详情
+    url(r'^info/(?P<chapter_id>\d+)/$', ChapterInfoView.as_view(), name="course_info"),
 
     # 课程评论
     url(r'^comment/(?P<course_id>\d+)/$', CommentsView.as_view(), name="course_comments"),
