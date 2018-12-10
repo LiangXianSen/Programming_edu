@@ -71,6 +71,7 @@ class ChapterInfoView(View):
     """
     def get(self, request, chapter_id):
         chapter = Chapter.objects.get(id=int(chapter_id))
+        video = chapter.get_chapter_video()
 
         return render(request, 'chapter-detail.html', {
             "chapter": chapter,
