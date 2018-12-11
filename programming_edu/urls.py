@@ -13,14 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
-
-from django.conf.urls.static import static
-from django.conf import settings
+from django.conf.urls import url, include
+from django.views.static import serve
+import xadmin
+from users.views import IndexView, LoginView
+from programming_edu.settings import MEDIA_ROOT
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('store/', include("store.urls")),
-    path('', include("web.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True, )
+    url(r'^xadmin/', xadmin.site.urls),
+    #跳转index
+    url(r'^$', IndexView.as_view(), name='index'),
+    #login
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    # login
+    url(r'^register/$', LoginView.as_view(), name='register'),
+
+    #配置上传文件的访问处理函数
+    url(r'^media/(?P<path>.*)$',  serve, {"document_root":MEDIA_ROOT}),
+
+    #课程相关URL配置
+    url(r'^course/', include(('courses.urls', 'courses'), namespace="course")),
+    #富文本相关url
+    url(r'^ueditor/',include('DjangoUeditor.urls')),
+]

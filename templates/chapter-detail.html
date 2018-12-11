@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for video in chapter.get_chapter_video %}
+            <div class="sectionTitle text-center">
+          <h2 class="wow fadeInUp" >
+            <span class="shape shape-left bg-color-4"></span>
+            <span>{{ video.name }}</span>
+            <span class="shape shape-right bg-color-4"></span>
+          </h2>
+
+        <video width="320" height="240" controls  >
+
+          <source src="https://cns2.ef-cdn.com/Juno/18/36/71/v/183671/MOB_11.2.1.1.1.mp4" type="video/mp4">
+
+        </video>
+       </div>
+    {% endfor %}
+{% endblock %}
+

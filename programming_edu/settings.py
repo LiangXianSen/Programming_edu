@@ -10,13 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import os
-import pymysql
+
+import os, sys, pymysql
+
 pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -31,7 +33,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# Application definition
+#Application definition
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,8 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'operation',
+    'users',
+    'courses',
+    'teachers',
     'store',
+    'xadmin',
+    'crispy_forms',
+    'DjangoUeditor',
 ]
+AUTH_USER_MODEL = "users.UserProfile"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,6 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -81,8 +98,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'programming_edu',
-        'USER': 'admin',
-        'PASSWORD': 'admin@programming',
+        'USER': 'simon',
+        'PASSWORD': 'simon123',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -111,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -119,7 +136,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
