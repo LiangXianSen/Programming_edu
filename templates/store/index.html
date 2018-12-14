@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Store</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-<ul>
-    {% for file in files %}
-    <li>{{ file.name }}; {{ file.date }}; <a href="/media/{{ file.path }}">{{ file.path }}</a></li>
-    {% endfor %}
-</ul>
-
-</body>
-</html>
+{% block body %}
+    <section class="colorSection full-width">
+        <div class="container">
+            <div class="sectionTitle text-center alt">
+                <h2>
+                    <span class="shape shape-left bg-color-4"></span>
+                    <span class="color-4">File Store</span>
+                    <span class="shape shape-right bg-color-4"></span>
+                </h2>
+            </div>
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Time</th>
+                        <th>Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for file in files %}
+                        <tr>
+                            <td>{{ file.name }}</td>
+                            <td>{{ file.date }}</td>
+                            <td><a href="/media/{{ file.path }}">{{ file.path }}</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}
