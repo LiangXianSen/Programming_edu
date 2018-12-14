@@ -5,20 +5,26 @@ $ apt-get install mysql-server
 $ mysql -u root
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'admin@programming' WITH GRANT OPTION;
 mysql> FLUSH PRIVILEGES;
-mysql> CREATE DATABASE programming_edu;
+mysql> CREATE DATABASE programming_edu CHARACTER SET utf8;
 ```
 
+
+# Install Django Runtime
+
+```
+pip install -r requirements.txt
+```
 
 
 # Init Environment
 
 ```
-python3 -m django --version (2.1.2)
-python3 manage.py startapp web
-python3 manage.py makemigrations
-python3 manage.py migrate
-python3 manage.py createsuperuser
-python3 manage.py runserver 0.0.0.0:8000
+python -m django --version (2.1.2)
+python manage.py startapp web
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver 0.0.0.0:8000
 ```
 
 
