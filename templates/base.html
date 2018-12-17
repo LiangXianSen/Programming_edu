@@ -106,8 +106,8 @@
                     <option value="3">Hindi</option>
                   </select>
                 </li>
-                {% if username %}
-                  <li>Welcome {{ username }}</li>
+                {% if request.user.is_authenticated %}
+                  <li>Welcome {{ request.user.username }}</li>
                 {% else %}
                   <li><i class="fa fa-unlock-alt bg-color-5" aria-hidden="true"></i> <a href='#loginModal' data-toggle="modal" >Login</a><span>or</span><a href='#createAccount' data-toggle="modal">Create an account</a></li>
                 {% endif %}
