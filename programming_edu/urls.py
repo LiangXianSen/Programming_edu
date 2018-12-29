@@ -26,7 +26,7 @@ urlpatterns = [
     path('login/', login, name="login"),
     path('logout/', logout, name="logout"),
     path('register/', register, name="register"),
-    path('', include("apps.web.urls")),
+    path('', include("apps.web.urls"), name="index"),
     path('store/', include("apps.store.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True, )
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
 
